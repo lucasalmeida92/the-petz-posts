@@ -1,8 +1,17 @@
 import styled from 'styled-components';
 import Page from '../../components/Page';
 
+const PostWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 560px;
+`;
+
 const PostTitle = styled.h2`
   margin: 16px 0;
+
+  &:first-letter {
+    text-transform: capitalize;
+  }
 `;
 
 const Author = styled.p`
@@ -17,9 +26,11 @@ const PostBody = styled.p`
 const Post = ({ post, user }) => {
   return (
     <Page pageTitle={`${post.title} | The Petz Posts`}>
-      <PostTitle>{post.title}</PostTitle>
-      <Author>{user.name}</Author>
-      <PostBody>{post.body}</PostBody>
+      <PostWrapper>
+        <PostTitle>{post.title}</PostTitle>
+        <Author>{user.name}</Author>
+        <PostBody>{post.body}</PostBody>
+      </PostWrapper>
     </Page>
   )
 }
