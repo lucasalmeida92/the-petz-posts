@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import Page from '../components/Page';
 import { normalizeById } from '../helpers/normalize';
 
+const PostsWrapper = styled.div`
+  margin: 0 auto;
+  max-width: 560px;
+`;
+
 const Post = styled.div`
   padding: 16px;
   margin: 16px 0;
@@ -9,18 +14,30 @@ const Post = styled.div`
   box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
 `;
 
+const PostTitle = styled.h2`
+  margin: 0 0 16px;
+`;
+
+const Author = styled.p`
+  margin: 0;
+`;
+
 const Home = ({ postsData, normalizedUsers }) => {
   return (
     <Page>
-      { !postsData.error
-        ? postsData.posts.map(post => (
-          <Post key={post.id}>
-            <h2><a href={`/post/${post.id}`} title={post.title}>{post.title}</a></h2>
-            <p>{normalizedUsers[post.userId].name}</p>
-          </Post>
-        ))
-        : <p>Can't load posts</p>
-      }
+      <PostsWrapper>
+        { !postsData.error
+          ? postsData.posts.map(post => (
+            <Post key={post.id}>
+              <PostTitle>
+                <a href={`/post/${post.id}`} title={post.title}>{post.title}</a>
+              </PostTitle>
+              <Author>{normalizedUsers[post.userId].name}</Author>
+            </Post>
+          ))
+          : <p>Can't load posts</p>
+        }
+      </PostsWrapper>
     </Page>
   )
 }

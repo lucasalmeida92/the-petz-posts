@@ -1,19 +1,25 @@
 import styled from 'styled-components';
 import Page from '../../components/Page';
 
-// const Post = styled.div`
-//   padding: 16px;
-//   margin: 16px;
-//   border-radius: 16px;
-//   box-shadow: 0 0 10px 1px rgba(0,0,0,.1);
-// `;
+const PostTitle = styled.h2`
+  margin: 16px 0;
+`;
+
+const Author = styled.p`
+  margin: 0;
+  font-weight: 600;
+`;
+
+const PostBody = styled.p`
+  margin: 24px 0 16px;
+`;
 
 const Post = ({ post, user }) => {
   return (
     <Page pageTitle={`${post.title} | The Petz Posts`}>
-      <h2>{post.title}</h2>
-      <p>{user.name}</p>
-      <p>{post.body}</p>
+      <PostTitle>{post.title}</PostTitle>
+      <Author>{user.name}</Author>
+      <PostBody>{post.body}</PostBody>
     </Page>
   )
 }
