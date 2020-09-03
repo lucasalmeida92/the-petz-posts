@@ -40,10 +40,12 @@ const PostWrapper = styled.div`
 `;
 
 const PostTitle = styled.h2`
-  margin: 16px 0;
+  margin: 24px 0 16px 0;
 
   &:first-letter {
     text-transform: capitalize;
+    font-size: 2.8rem;
+    color: ${({theme}) => theme.colors.text2};
   }
 `;
 
@@ -54,6 +56,10 @@ const Author = styled.p`
 
 const PostBody = styled.p`
   margin: 24px 0 16px;
+
+  &:first-letter {
+    text-transform: capitalize;
+  }
 `;
 
 const Post = ({ post, user }) => {

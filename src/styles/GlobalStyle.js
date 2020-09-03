@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
 
   h2 {
     font-weight: 600;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 1.5rem;
     color: ${props => (props.theme.colors.text1)};
   }

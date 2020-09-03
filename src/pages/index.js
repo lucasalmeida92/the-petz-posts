@@ -48,6 +48,21 @@ const PostTitle = styled.h2`
 
 const Author = styled.p`
   margin: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 100px;
+  line-height: 15px;
+
+  &:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    flex-shrink: 0;
+    background: url('/user-icon.svg') no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+  }
 `;
 
 const DeleteButton = styled.button`
@@ -102,14 +117,18 @@ const Home = ({ byAuthor, postsData, normalizedUsers }) => {
     }
   }
 
-  const handleDeletePost = async postId => {
+  const handleDeletePost = async (e, postId) => {
+    const postEl = e.target.parentNode;
+
     NProgress.start();
 
     try {
-      const deletePostRes = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
+      await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
         method: 'DELETE',
       });
-      console.log(deletePostRes);
+
+      // postEl.remove();
+      postEl.style.display = 'none';
     } catch(error) {
       console.log(error);
     }
@@ -135,7 +154,7 @@ const Home = ({ byAuthor, postsData, normalizedUsers }) => {
                 <a href={`/post/${post.id}`} title={post.title}>{post.title}</a>
               </PostTitle>
               <Author>{normalizedUsers[post.userId].name}</Author>
-              <DeleteButton onClick={() => handleDeletePost(post.id)}/>
+              <DeleteButton onClick={(e) => handleDeletePost(e, post.id)}/>
             </Post>
           ))
           : <p>Can't load posts</p>
