@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import HeadTag from './HeadTag'
 
 const Header = styled.header`
+  overflow: hidden;
   position: fixed;
   left: 0;
   top: 0;
