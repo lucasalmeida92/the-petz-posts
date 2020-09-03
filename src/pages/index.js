@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
+import NProgress from 'nprogress';
 import Page from '../components/Page';
 import { normalizeById } from '../helpers/normalize';
 
@@ -101,8 +102,19 @@ const Home = ({ byAuthor, postsData, normalizedUsers }) => {
     }
   }
 
-  const handleDeletePost = postId => {
+  const handleDeletePost = async postId => {
+    NProgress.start();
 
+    try {
+      const deletePostRes = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`, {
+        method: 'DELETE',
+      });
+      console.log(deletePostRes);
+    } catch(error) {
+      console.log(error);
+    }
+
+    NProgress.done();
   }
 
   return (

@@ -1,5 +1,38 @@
 import styled from 'styled-components';
+import Router from 'next/router';
 import Page from '../../components/Page';
+
+const BackButton = styled.button`
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin: 8px 0;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 40px;
+  background-color: #f6f6f6;
+  cursor: pointer;
+  transition: all 200ms ease-out;
+  outline: none;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-left: -16px;
+    background: url('/back-icon.svg') no-repeat;
+    background-size: 18px auto;
+    background-position: center;
+    transition: all 200ms ease-out;
+  }
+
+  &:hover {
+    &:before {
+      width: 48px;
+    }
+  }
+`;
 
 const PostWrapper = styled.div`
   margin: 0 auto;
@@ -26,6 +59,7 @@ const PostBody = styled.p`
 const Post = ({ post, user }) => {
   return (
     <Page pageTitle={`${post.title} | The Petz Posts`}>
+      <BackButton onClick={() => Router.back()}>Go Back</BackButton>
       <PostWrapper>
         <PostTitle>{post.title}</PostTitle>
         <Author>{user.name}</Author>
